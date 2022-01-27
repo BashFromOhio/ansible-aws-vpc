@@ -73,7 +73,7 @@
         region: "{{ region }}"
         az: "{{ zone2 }}"
         state: "{{state}}"
-        cidr: "{{ PriveSub2Cidr }}"
+        cidr: "{{ PrivSub2Cidr }}"
         map_public: yes
         resource_tags:
           Name: dev-privsub2
