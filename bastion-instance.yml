@@ -13,7 +13,7 @@
     - name: Create dev ec2 key
       ec2_key:
           name: devpro-key
-          region: :{{region}}"
+          region: "{{region}}"
       register: key_out
 
     - name: Save private key into file bastion-key,pem
