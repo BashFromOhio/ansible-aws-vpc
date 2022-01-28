@@ -12,13 +12,13 @@
 
     - name: Create dev ec2 key
       ec2_key:
-          name: devpro2-key
-          region: "{{region}}"
+        name: devpro2-key
+        region: "{{region}}"
       register: key_out
 
     - name: Save private key into file bastion-key.pem
       copy:
-        content: "{{key_out.private_key}}"
+        content: "{{key_out.key.private_key}}"
         dest: "./bastion-key.pem"
         mode: 0600
       when: key_out.changed
