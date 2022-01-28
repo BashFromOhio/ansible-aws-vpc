@@ -11,20 +11,20 @@
       include_vars: vars/output_vars
 
     - name: Create dev ec2 key
-        ec2_key:
+      ec2_key:
           name: devpro-key
           region: :{{region}}"
         register: key_out
 
     - name: Save private key into file bastion-key,pem
-        copy:
+      copy:
           content: "{{key_out.private_key}}"
           dest: "./bastion-key.pem"
           mode: 0600
-        when: key_out.changed
+      when: key_out.changed
 
     - name: Bastion host SG
-        ec2_group:
+      ec2_group:
           name: Bastion-host-sg
           description: Allow port 22 from everywhere and all port within sg
           region: "{{region}}"
@@ -34,10 +34,10 @@
               from_port: 22
               to_port: 22
               cidr_ip: "{{MYIP}}"
-        register: BastionSG_out
+      register: BastionSG_out
 
     - name: Create bastion host
-        ec2:
+      ec2:
           key_name: "{{key_out}}"
           region: "{{region}}"
           instance_type: t2.micro
@@ -55,7 +55,7 @@
             Owner: Bash
           group_id: "{{BastionSG_out.group_id}}"
           vpc_subnet_id: "{{pubsub1id}}"
-        register: bastionhost_out
+      register: bastionhost_out
 
 
 
