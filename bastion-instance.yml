@@ -12,7 +12,7 @@
 
     - name: Create dev ec2 key
       ec2_key:
-          name: devpro-key
+          name: devpro2-key
           region: "{{region}}"
       register: key_out
 
